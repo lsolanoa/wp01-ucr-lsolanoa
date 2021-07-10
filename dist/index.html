@@ -11,12 +11,16 @@
 -->
 <html>
 	<head>
+		<!-- Meta -->
 		<title>wp01-ucr-lsolanoa</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<meta name="author" content="Luis Fernando Solano Aguilar, Adrián Vergara Heidke">
 		<meta name="keywords" content="mulimodality, academic research, linguistics, ucr, university of costa rica">
+		<!-- Styles -->
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
 	</head>
 	<body class="is-preload">
 		<div id="page-wrapper">
@@ -45,12 +49,52 @@
 				</div>
 
 			<!-- Banner -->
-				<section id="banner">
+				<section id="banner" class="ban-1" style="background-image: url('https://picsum.photos/id/1/1600/484');">
 					<header>
-						<h2>Important title of some kind - [post_title]</h2>
+						<h2>Important title of some kind - [post_title][0]</h2>
 						<a href="#" class="button">Read More</a>
 					</header>
+					<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+					<a class="next" onclick="plusSlides(1)">&#10095;</a>
 				</section>
+
+				<section id="banner" class="ban-2" style="display:none;background-image: url('https://picsum.photos/id/2/1600/484');">
+					<header>
+						<h2>Important title of some kind - [post_title][1]</h2>
+						<a href="#" class="button">Read More</a>
+					</header>
+					<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+					<a class="next" onclick="plusSlides(1)">&#10095;</a>
+				</section>
+
+				<section id="banner" class="ban-3" style="display:none;background-image: url('https://picsum.photos/id/3/1600/484');">
+					<header>
+						<h2>Important title of some kind - [post_title][3]</h2>
+						<a href="#" class="button">Read More</a>
+					</header>
+					<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+					<a class="next" onclick="plusSlides(1)">&#10095;</a>
+				</section>
+
+				<script type="text/javascript">
+				// Change the banner every 5 seconds
+				$(document).ready(function() {
+				//Simple loop
+					setInterval(function(){
+						if($(".ban-1").is(":visible")){
+							$(".ban-1").hide();
+							$(".ban-2").show();
+            } else if ($(".ban-2").is(":visible")) {
+							$(".ban-2").hide();
+							$(".ban-3").show();
+            } else if ($(".ban-3").is(":visible")) {
+							$(".ban-3").hide();
+							$(".ban-1").show();
+						}
+    			//this code runs every 5 seconds
+				}, 5000);
+				});
+				</script>
 
 			<!-- Highlights -->
 				<section class="wrapper style1">
@@ -82,14 +126,7 @@
 				</section>
 
 			<!-- Gigantic Heading -->
-				<section class="wrapper style2">
-					<div class="container">
-						<header class="major">
-							<h2>AJAX CALL [ajax/horizontal_time_line.html]</h2>
-						</header>
-					</div>
-				</section>
-
+						<iframe scrolling="no" src="ajax\horizontal_time_line.html" width="100%" height="600px;"></iframe>
 			<!-- Posts -->
 				<section class="wrapper style1">
 					<div class="container">
@@ -212,9 +249,8 @@
 						</div>
 
 				</div>
-
 		</div>
-
+		
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/jquery.dropotron.min.js"></script>
@@ -222,6 +258,5 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
-
 	</body>
 </html>
