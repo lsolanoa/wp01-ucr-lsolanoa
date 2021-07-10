@@ -69,11 +69,11 @@
 
 				<section id="banner" class="ban-3" style="display:none;background-image: url('https://picsum.photos/id/3/1600/484');">
 					<header>
-						<h2>Important title of some kind - [post_title][3]</h2>
+						<h2>Important title of some kind - [post_title][2]</h2>
 						<a href="#" class="button">Read More</a>
 					</header>
-					<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-					<a class="next" onclick="plusSlides(1)">&#10095;</a>
+					<a class="prev">&#10094;</a>
+					<a class="next">&#10095;</a>
 				</section>
 
 				<script type="text/javascript">
@@ -82,17 +82,37 @@
 				//Simple loop
 					setInterval(function(){
 						if($(".ban-1").is(":visible")){
-							$(".ban-1").hide();
-							$(".ban-2").show();
+							$(".ban-1").hide();$(".ban-2").show();
             } else if ($(".ban-2").is(":visible")) {
-							$(".ban-2").hide();
-							$(".ban-3").show();
+							$(".ban-2").hide();$(".ban-3").show();
             } else if ($(".ban-3").is(":visible")) {
-							$(".ban-3").hide();
-							$(".ban-1").show();
+							$(".ban-3").hide();$(".ban-1").show();
 						}
-    			//this code runs every 5 seconds
-				}, 5000);
+    			//this code runs every 10 seconds
+				}, 10000);
+
+				//Code Buttons
+				//Next
+				$(".next").click(function(){
+					if($(".ban-1").is(":visible")){
+						$(".ban-1").hide();$(".ban-2").show();
+					} else if ($(".ban-2").is(":visible")) {
+						$(".ban-2").hide();$(".ban-3").show();
+					} else if ($(".ban-3").is(":visible")) {
+						$(".ban-3").hide();$(".ban-1").show();
+					}
+				});
+				//Prev
+				$(".prev").click(function(){
+					if($(".ban-1").is(":visible")){
+						$(".ban-1").hide();$(".ban-3").show();
+					} else if ($(".ban-2").is(":visible")) {
+						$(".ban-2").hide();$(".ban-1").show();
+					} else if ($(".ban-3").is(":visible")) {
+						$(".ban-3").hide();$(".ban-2").show();
+					}
+				});
+
 				});
 				</script>
 
@@ -102,21 +122,21 @@
 						<div class="row gtr-200">
 							<section class="col-4 col-12-narrower">
 								<div class="box highlight">
-									<i class="icon solid major fa-paper-plane"></i>
+									<i style="background-color:#71C4CC;" class="icon solid major fa-users"></i>
 									<h3>This Is Important - [section_title]</h3>
 									<p>Duis neque nisi, dapibus sed mattis et quis, nibh. Sed et dapibus nisl amet mattis, sed a rutrum accumsan sed. Suspendisse eu. - [section_desc]</p>
 								</div>
 							</section>
 							<section class="col-4 col-12-narrower">
 								<div class="box highlight">
-									<i class="icon solid major fa-pencil-alt"></i>
+									<i style="background-color:#87CC71;" class="icon solid major fa-search-plus"></i>
 									<h3>Also Important - [section_title]</h3>
 									<p>Duis neque nisi, dapibus sed mattis et quis, nibh. Sed et dapibus nisl amet mattis, sed a rutrum accumsan sed. Suspendisse eu. - [section_desc]</p>
 								</div>
 							</section>
 							<section class="col-4 col-12-narrower">
 								<div class="box highlight">
-									<i class="icon solid major fa-wrench"></i>
+									<i style="background-color:#A771CC;" class="icon solid major fa-edit"></i>
 									<h3>Probably Important - [section_title]</h3>
 									<p>Duis neque nisi, dapibus sed mattis et quis, nibh. Sed et dapibus nisl amet mattis, sed a rutrum accumsan sed. Suspendisse eu. - [section_desc]</p>
 								</div>
@@ -250,7 +270,7 @@
 
 				</div>
 		</div>
-		
+
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/jquery.dropotron.min.js"></script>
