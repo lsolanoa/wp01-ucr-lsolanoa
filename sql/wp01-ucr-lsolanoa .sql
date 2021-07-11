@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-07-2021 a las 22:25:49
+-- Tiempo de generación: 11-07-2021 a las 19:50:45
 -- Versión del servidor: 10.4.19-MariaDB
 -- Versión de PHP: 8.0.7
 
@@ -71,7 +71,7 @@ CREATE TABLE `imp` (
 CREATE TABLE `links` (
   `id_link` int(11) NOT NULL COMMENT 'id link',
   `title_link` text NOT NULL COMMENT 'link''s name',
-  `url_linl` text NOT NULL COMMENT 'URL'
+  `url_link` text NOT NULL COMMENT 'URL'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
