@@ -73,22 +73,22 @@
 						<div class="row gtr-200">
 							<section class="col-4 col-12-narrower">
 								<div class="box highlight">
-									<i style="background-color:#71C4CC;" class="icon solid major fa-users"></i>
-									<h3>This Is Important - [section_title]</h3>
+									<a href="#"><i style="background-color:#71C4CC;cursor:pointer;" class="icon solid major fa-users"></i></a>
+									<a href="#"><h3>This Is Important - [section_title]</h3></a>
 									<p>Duis neque nisi, dapibus sed mattis et quis, nibh. Sed et dapibus nisl amet mattis, sed a rutrum accumsan sed. Suspendisse eu. - [section_desc]</p>
 								</div>
 							</section>
 							<section class="col-4 col-12-narrower">
 								<div class="box highlight">
-									<i style="background-color:#87CC71;" class="icon solid major fa-search-plus"></i>
-									<h3>Also Important - [section_title]</h3>
+									<a href="#"><i style="background-color:#87CC71;cursor:pointer;" class="icon solid major fa-search-plus"></i></a>
+									<a href="#"><h3>Also Important - [section_title]</h3></a>
 									<p>Duis neque nisi, dapibus sed mattis et quis, nibh. Sed et dapibus nisl amet mattis, sed a rutrum accumsan sed. Suspendisse eu. - [section_desc]</p>
 								</div>
 							</section>
 							<section class="col-4 col-12-narrower">
 								<div class="box highlight">
-									<i style="background-color:#A771CC;" class="icon solid major fa-edit"></i>
-									<h3>Probably Important - [section_title]</h3>
+									<a href="#"><i style="background-color:#A771CC;cursor:pointer;" class="icon solid major fa-edit"></i></a>
+									<a href="#"><h3>Probably Important - [section_title]</h3></a>
 									<p>Duis neque nisi, dapibus sed mattis et quis, nibh. Sed et dapibus nisl amet mattis, sed a rutrum accumsan sed. Suspendisse eu. - [section_desc]</p>
 								</div>
 							</section>
