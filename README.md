@@ -1,10 +1,6 @@
 # Web Main Page - UCR Project
 
-<<<<<<< Updated upstream
-Created by @lsolanoa in collaboration with the [University of Costa Rica](https://www.ucr.ac.cr/). 
-=======
 Created by @lsolanoa in collaboration with the [University of Costa Rica](https://www.ucr.ac.cr/).
->>>>>>> Stashed changes
 
 [UCR Linguistics Department](https://filologia.ucr.ac.cr/departamentos/linguistica/) & [UCREA](http://www.ucrea.ucr.ac.cr/)
 
@@ -24,9 +20,6 @@ Created by @lsolanoa in collaboration with the [University of Costa Rica](https:
  1. Introduction
  2. Description
  3. Objectives
-<<<<<<< Updated upstream
- 4. Schema
-=======
 
 ### 4. Schema
 
@@ -207,7 +200,6 @@ Table 8 [cont] - Schema
 | date_cont| date|Date Recorded|
 | desc_cont| text |User Message|
 
->>>>>>> Stashed changes
  5. Installation Guide
  6. User Guide
  7. Conclusion
