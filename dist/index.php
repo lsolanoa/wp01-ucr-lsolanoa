@@ -1,32 +1,24 @@
 <?php include "includes/header.php"; ?>
 			<!-- Banner -->
-				<section id="banner" class="ban-1" style="background-image: url('https://picsum.photos/id/1/1600/484');">
+			<?php
+			include_once 'php/conn.php';
+			$sql = "SELECT title_page, pages.id_page, desc_page, img_page FROM slideshow LEFT JOIN pages ON slideshow.id_page=pages.id_page ORDER BY id_slide DESC LIMIT 3";
+			$result = $db->query($sql);
+			$x = 1;
+			while ($row = $result->fetch_assoc()):
+				$img = $row['img_page'];
+			 ?>
+				<section id="banner" class="ban-<?php echo $x;?>" style="background-image: url('images/<?php echo $img; ?>'); <?php if($x!=1){echo'display:none';} ?>">
 					<header>
-						<h2>Important title of some kind - [post_title][0]</h2>
-						<a href="#" class="button">Read More</a>
+						<h2><?php echo $row['title_page']; ?></h2>
+						<a href="posts.php?id=<?php echo $row['id_page']; ?>" class="button">Leer Más</a>
 					</header>
-					<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-					<a class="next" onclick="plusSlides(1)">&#10095;</a>
+						<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+						<a class="next" onclick="plusSlides(1)">&#10095;</a>
 				</section>
+			<?php  $x++;endwhile; ?>
 
-				<section id="banner" class="ban-2" style="display:none;background-image: url('https://picsum.photos/id/2/1600/484');">
-					<header>
-						<h2>Important title of some kind - [post_title][1]</h2>
-						<a href="#" class="button">Read More</a>
-					</header>
-					<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-					<a class="next" onclick="plusSlides(1)">&#10095;</a>
-				</section>
-
-				<section id="banner" class="ban-3" style="display:none;background-image: url('https://picsum.photos/id/3/1600/484');">
-					<header>
-						<h2>Important title of some kind - [post_title][2]</h2>
-						<a href="#" class="button">Read More</a>
-					</header>
-					<a class="prev">&#10094;</a>
-					<a class="next">&#10095;</a>
-				</section>
-
+			<?php if ($x >= 4): ?>
 				<script type="text/javascript">
 				// Change the banner every 5 seconds
 				$(document).ready(function() {
@@ -34,12 +26,12 @@
 					setInterval(function(){
 						if($(".ban-1").is(":visible")){
 							$(".ban-1").hide();$(".ban-2").show();
-            } else if ($(".ban-2").is(":visible")) {
+						} else if ($(".ban-2").is(":visible")) {
 							$(".ban-2").hide();$(".ban-3").show();
-            } else if ($(".ban-3").is(":visible")) {
+						} else if ($(".ban-3").is(":visible")) {
 							$(".ban-3").hide();$(".ban-1").show();
 						}
-    			//this code runs every 10 seconds
+					//this code runs every 10 seconds
 				}, 10000);
 
 				//Code Buttons
@@ -66,89 +58,60 @@
 
 				});
 				</script>
+			<?php endif; ?>
 
 			<!-- Highlights -->
 				<section class="wrapper style1">
 					<div class="container">
 						<div class="row gtr-200">
+							<?php
+							$sql = "SELECT * FROM imp JOIN pages ON imp.id_page=pages.id_page ORDER BY id_imp DESC LIMIT 3";
+							$result = $db->query($sql);
+							while ($row = $result->fetch_assoc()):
+							 ?>
 							<section class="col-4 col-12-narrower">
 								<div class="box highlight">
-									<a href="#"><i style="background-color:#71C4CC;cursor:pointer;" class="icon solid major fa-users"></i></a>
-									<a href="#"><h3>This Is Important - [section_title]</h3></a>
-									<p>Duis neque nisi, dapibus sed mattis et quis, nibh. Sed et dapibus nisl amet mattis, sed a rutrum accumsan sed. Suspendisse eu. - [section_desc]</p>
+									<a href="pages.php?id=<?php echo $row['id_page']; ?>"><i style="background-color:<?php echo $row['color_imp']; ?>;cursor:pointer;" class="icon solid major <?php echo $row['icon_imp']; ?>"></i></a>
+									<a href="pages.php?id=<?php echo $row['id_page']; ?>"><h3><?php echo $row['title_page']; ?></h3></a>
+									<p><?php echo $row['desc_page']; ?></p>
 								</div>
 							</section>
-							<section class="col-4 col-12-narrower">
-								<div class="box highlight">
-									<a href="#"><i style="background-color:#87CC71;cursor:pointer;" class="icon solid major fa-search-plus"></i></a>
-									<a href="#"><h3>Also Important - [section_title]</h3></a>
-									<p>Duis neque nisi, dapibus sed mattis et quis, nibh. Sed et dapibus nisl amet mattis, sed a rutrum accumsan sed. Suspendisse eu. - [section_desc]</p>
-								</div>
-							</section>
-							<section class="col-4 col-12-narrower">
-								<div class="box highlight">
-									<a href="#"><i style="background-color:#A771CC;cursor:pointer;" class="icon solid major fa-edit"></i></a>
-									<a href="#"><h3>Probably Important - [section_title]</h3></a>
-									<p>Duis neque nisi, dapibus sed mattis et quis, nibh. Sed et dapibus nisl amet mattis, sed a rutrum accumsan sed. Suspendisse eu. - [section_desc]</p>
-								</div>
-							</section>
+						<?php endwhile; ?>
 						</div>
 					</div>
 				</section>
 
 			<!-- Gigantic Heading -->
-						<iframe scrolling="no" src="ajax\horizontal_time_line.html" width="100%" height="600px;"></iframe>
+						<iframe scrolling="no" src="ajax\horizontal_time_line.php" width="100%" height="600px;"></iframe>
 			<!-- Posts -->
 				<section class="wrapper style1">
 					<div class="container">
 						<div class="row">
+							<?php
+							$sql = "SELECT * FROM pages WHERE type_page = 1 ORDER BY id_page DESC LIMIT 6";
+							$result = $db->query($sql);
+							while ($row = $result->fetch_assoc()):
+							 ?>
 							<section class="col-6 col-12-narrower">
 								<div class="box post">
-									<a href="#" class="image left"><img src="images/pic01.jpg" alt="" /></a>
+									<a href="posts.php?id=<?php echo $row['id_page']; ?>"><img class="image left" src="images/<?php echo $row['img_page']; ?>" alt="" />
 									<div class="inner">
-										<h3>Recent Post - [post_title]</h3>
-										<p>Duis neque nisi, dapibus sed mattis et quis, nibh. Sed et dapibus nisl amet mattis, sed a rutrum accumsan sed. Suspendisse eu. - [post_desc]</p>
+										<h3><?php echo $row['title_page']; ?></h3>
+										<p><?php echo $row['desc_page']; ?></p>
 									</div>
+									</a>
 								</div>
 							</section>
-							<section class="col-6 col-12-narrower">
-								<div class="box post">
-									<a href="#" class="image left"><img src="images/pic02.jpg" alt="" /></a>
-									<div class="inner">
-							<h3>Recent Post - [post_title]</h3>
-										<p>Duis neque nisi, dapibus sed mattis et quis, nibh. Sed et dapibus nisl amet mattis, sed a rutrum accumsan sed. Suspendisse eu. - [post_desc]</p>
-									</div>
-								</div>
-							</section>
-						</div>
-						<div class="row">
-							<section class="col-6 col-12-narrower">
-								<div class="box post">
-									<a href="#" class="image left"><img src="images/pic03.jpg" alt="" /></a>
-									<div class="inner">
-							<h3>Recent Post - [post_title]</h3>
-										<p>Duis neque nisi, dapibus sed mattis et quis, nibh. Sed et dapibus nisl amet mattis, sed a rutrum accumsan sed. Suspendisse eu. - [post_desc]</p>
-									</div>
-								</div>
-							</section>
-							<section class="col-6 col-12-narrower">
-								<div class="box post">
-									<a href="#" class="image left"><img src="images/pic04.jpg" alt="" /></a>
-									<div class="inner">
-							<h3>Recent Post - [post_title]</h3>
-										<p>Duis neque nisi, dapibus sed mattis et quis, nibh. Sed et dapibus nisl amet mattis, sed a rutrum accumsan sed. Suspendisse eu. - [post_desc]</p>
-									</div>
-								</div>
-							</section>
+						<?php endwhile; ?>
 						</div>
 					</div>
 				</section>
 
 			<!-- CTA -->
-			<section id="cta" class="wrapper style3">
+			<section id="cta" class="wrapper style2">
 				<div class="container">
 					<header>
-					 <img class="logo_main" src="images/ucr_logo.png" alt="UCR Logo"></img>
+					 <img class="logo_footer" src="images/logo_footer_color.png" alt="UCR Logo"></img>
 					</header>
 				</div>
 			</section>

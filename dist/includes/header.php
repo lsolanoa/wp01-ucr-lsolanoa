@@ -9,10 +9,18 @@
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
+<?php
+$directoryURI = $_SERVER['REQUEST_URI'];
+$path = parse_url($directoryURI, PHP_URL_PATH);
+$components = explode('/', $path);
+$lastKey = key(array_slice($components, -1, 1, true));
+$url = $components[$lastKey];
+date_default_timezone_set('America/Costa_Rica');
+ ?>
 <html>
 	<head>
 		<!-- Meta -->
-		<title>wp01-ucr-lsolanoa</title>
+		<title>Desarrollo de la compresión lectora</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<meta name="author" content="Luis Fernando Solano Aguilar, Adrián Vergara Heidke">
@@ -23,6 +31,7 @@
 			<script src="assets/js/jquery.min.js"></script>
 	</head>
 	<body class="is-preload">
+		
 		<div id="page-wrapper">
 
 			<!-- Header -->
@@ -34,17 +43,33 @@
 					<!-- Nav -->
 						<nav id="nav">
 							<ul>
-								<li class="current"><a href="index.php">Home - [nav_title][nav_type=main]</a></li>
-								<li>
-									<a href="#">Dropdown - [nav_title]</a>
-									<ul>
-										<li><a href="#">Lorem dolor - [nav_title][nav_type=sub]</a></li>
-										<li><a href="#">Magna phasellus - [nav_title][nav_type=sub]</a></li>
-										<li><a href="#">Etiam sed tempus - [nav_title][nav_type=sub]</a></li>
-									</ul>
-								</li>
-                <li><a href="posts.php">Posts - [nav_title][nav_type=main]</a></li>
-                <li><a href="pages.php">Pages - [nav_title][nav_type=main]</a></li>
+								<li <?php if ($url==="index.php") {echo "class='current'";} ?>><a href="index.php">Principal</a></li>
+								<?php
+								//Connect to the Data Base
+								include 'php/conn.php';
+									//Query Entries
+									$sql = "SELECT pages.id_page, title_page, struc_nav FROM nav JOIN pages ON nav.id_page=pages.id_page WHERE struc_nav='NULL';";
+									$result = $db->query($sql);
+									while ($row = $result->fetch_assoc()):
+								 ?>
+								 <li <?php if ($url==="pages.php") {echo "class='current'";} ?> ><a href="pages.php?id=<?php echo $row['id_page']; ?>"><?php echo $row['title_page']; ?></a>
+										 <?php
+										 $id_page_sub = $row['id_page'];
+										 $sql_sub = "SELECT pages.id_page, title_page AS 'subpage' FROM nav JOIN pages ON nav.id_page=pages.id_page WHERE struc_nav='$id_page_sub';";
+										 $result_sub = $db->query($sql_sub);
+										 $row_cnt = $result_sub->num_rows;
+										 if ($row_cnt  > 0):
+											?>
+											<ul>
+											<?php
+											while ($row_sub = $result_sub->fetch_assoc()):
+											?>
+											<li <?php if ($url==="pages.php") {echo "class='current'";} ?> ><a href="pages.php?id=<?php echo $row_sub['id_page']; ?>"><?php echo $row_sub['subpage']; ?></a>
+										<?php endwhile; ?>
+									 </ul>
+									<?php endif; ?>
+								 </li>
+							 <?php endwhile;?>
 							</ul>
 						</nav>
 

@@ -2504,8 +2504,16 @@ input, select, textarea {
 	}
 
 	.box.post {
+		height: 90%;
 		position: relative;
 		margin: 0 0 2em 0;
+		border: 2px solid #cfcfcf67;
+		padding: 2%;
+	}
+
+	.box.post a {
+		text-decoration: none;
+		color: #000;
 	}
 
 		.box.post:after {
@@ -2514,8 +2522,13 @@ input, select, textarea {
 			clear: both;
 		}
 
+		.box.post:hover {
+			border: 2px solid #bebebe;
+			transition: 0.5s;
+		}
+
 		.box.post .inner {
-			margin-left: calc(30% + 2em);
+			margin-left: calc(40% + 2em);
 		}
 
 			.box.post .inner > :last-child {
@@ -2523,8 +2536,8 @@ input, select, textarea {
 			}
 
 		.box.post .image {
-			width: 30%;
-			margin: 0;
+			width: 40%;
+			margin: 2%;
 		}
 
 /* Header */
@@ -3362,7 +3375,7 @@ input, select, textarea {
 
 /* Header */
 .logo_main {
-	width: 35%;
+	width: 40%;
 	margin-left: 3em;
 }
 
@@ -3399,6 +3412,12 @@ input, select, textarea {
   background-color: rgba(0,0,0,0.8);
 }
 
+/* Content */
+
+#content article img {
+	padding: 2%;
+}
+
 /* Footer */
  #footer {
 	 background-color: #5a5a5a;
@@ -3407,5 +3426,5 @@ input, select, textarea {
 
 
 .logo_footer {
-	width: 40%;
+	width: 60%;
 }

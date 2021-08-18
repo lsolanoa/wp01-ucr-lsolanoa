@@ -3,45 +3,45 @@
     <div class="container">
       <div class="row">
         <section class="col-3 col-6-narrower col-12-mobilep">
-          <h3>Links to Stuff</h3>
+          <h3>Mapa de la página web</h3>
           <ul class="links">
-            <li><a href="#">Mattis et quis rutrum</a></li>
-            <li><a href="#">Suspendisse amet varius</a></li>
-            <li><a href="#">Sed et dapibus quis</a></li>
-            <li><a href="#">Rutrum accumsan dolor</a></li>
-            <li><a href="#">Mattis rutrum accumsan</a></li>
-            <li><a href="#">Suspendisse varius nibh</a></li>
-            <li><a href="#">Sed et dapibus mattis</a></li>
+            <?php 
+             			$sql = "SELECT pages.id_page, title_page FROM nav JOIN pages ON nav.id_page=pages.id_page ORDER BY pos_nav ASC";
+                   $result = $db->query($sql);
+                   while ($row = $result->fetch_assoc()): 
+            ?>
+            <li><a href="pages.php?id=<?php echo $row['id_page']; ?>"><?php echo $row['title_page']; ?></a></li>
+            <?php endwhile; ?>
           </ul>
         </section>
         <section class="col-3 col-6-narrower col-12-mobilep">
-          <h3>More Links to Stuff</h3>
+          <h3>Enlances importantes</h3>
           <ul class="links">
-            <li><a href="#">Duis neque nisi dapibus</a></li>
-            <li><a href="#">Sed et dapibus quis</a></li>
-            <li><a href="#">Rutrum accumsan sed</a></li>
-            <li><a href="#">Mattis et sed accumsan</a></li>
-            <li><a href="#">Duis neque nisi sed</a></li>
-            <li><a href="#">Sed et dapibus quis</a></li>
-            <li><a href="#">Rutrum amet varius</a></li>
+          <?php 
+             			$sql = "SELECT * FROM links";
+                   $result = $db->query($sql);
+                   while ($row = $result->fetch_assoc()): 
+            ?>
+            <li><a href="<?php echo $row['url_link']; ?>"><?php echo $row['title_link']; ?></a></li>
+            <?php endwhile; ?>
           </ul>
         </section>
         <section class="col-6 col-12-narrower">
-          <h3>Get In Touch</h3>
-          <form>
+          <h3>Contactanos:</h3>
+          <form class>
             <div class="row gtr-50">
               <div class="col-6 col-12-mobilep">
-                <input type="text" name="name" id="name" placeholder="Name" />
+                <input style="color:black;" type="text" name="name_cont" id="name_cont" placeholder="Nombre" require/>
               </div>
               <div class="col-6 col-12-mobilep">
-                <input type="email" name="email" id="email" placeholder="Email" />
+                <input style="color:black;" type="email" name="email_cont" id="email" placeholder="Email" require/>
               </div>
               <div class="col-12">
-                <textarea name="message" id="message" placeholder="Message" rows="5"></textarea>
+                <textarea style="color:black;" name="desc_cont" id="desc_cont" placeholder="Mensaje" rows="5" maxlength="250" require></textarea>
               </div>
               <div class="col-12">
                 <ul class="actions">
-                  <li><input type="submit" class="button alt" value="Send Message" /></li>
+                  <li><input type="submit" class="button alt" value="Contactar Administrador" /></li>
                 </ul>
               </div>
             </div>
@@ -50,15 +50,10 @@
       </div>
     </div>
 
-    <!-- Icons -->
-      <ul class="icons">
-          <img class="logo_footer" src="images/logo_footer.png" alt="Logo Footer">
-      </ul>
-
     <!-- Copyright -->
       <div class="copyright">
         <ul class="menu">
-          <li>&copy; Proyecto UCREA. Derechos reservados</li><li><a href="admin\login.html">ACCEDER META</a></li>
+          <li>&copy; Proyecto UCREA. 2020-2021 Derechos reservados</li><li><a href="admin\index.php">ACCEDER META</a></li>
 
         </ul>
       </div>
