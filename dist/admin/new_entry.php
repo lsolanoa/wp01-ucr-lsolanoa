@@ -1,115 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>DCLTMM - Página de Administrador</title>
-
-  <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
-  <!-- overlayScrollbars -->
-  <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="dist/css/adminlte.min.css">
-</head>
-<body class="hold-transition light-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
-<div class="wrapper">
-
-  <!-- Preloader -->
-  <div class="preloader flex-column justify-content-center align-items-center">
-    <img src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
-  </div>
-
-  <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-dark">
-    <!-- Left navbar links -->
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Principal</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Contacto</a>
-      </li>
-    </ul>
-
-    <!-- Right navbar links -->
-    <ul class="navbar-nav ml-auto">
-      <!-- Navbar Search -->
-      <li class="nav-item">
-        <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-          <i class="fas fa-search"></i>
-        </a>
-        <div class="navbar-search-block">
-          <form class="form-inline">
-            <div class="input-group input-group-sm">
-              <input class="form-control form-control-navbar" type="search" placeholder="Busqueda" aria-label="Busqueda">
-              <div class="input-group-append">
-                <button class="btn btn-navbar" type="submit">
-                  <i class="fas fa-search"></i>
-                </button>
-                <button class="btn btn-navbar" type="button" data-widget="navbar-search">
-                  <i class="fas fa-times"></i>
-                </button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-          <i class="fas fa-expand-arrows-alt"></i>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
-          <i class="fas fa-th-large"></i>
-        </a>
-      </li>
-    </ul>
-  </nav>
-  <!-- /.navbar -->
-
-  <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <!-- Brand Logo -->
-    <a href="#" class="brand-link">
-      <img src="../images/logo_main_white.png" alt="Admin-Logo" class="brand-image">
-    </a>
-
-    <!-- Sidebar -->
-    <div class="sidebar">
-      <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="info">
-          <a href="#" class="d-block">Administrador</a>
-        </div>
-      </div>
-
-      <!-- Sidebar Menu -->
-      <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-          <li class="nav-item">
-            <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-file"></i>
-              <p>
-                Entradas
-              </p>
-            </a>
-          </li>
-        </ul>
-      </nav>
-      <!-- /.sidebar-menu -->
-    </div>
-    <!-- /.sidebar -->
-  </aside>
-
+<?php include 'includes/header.php'; ?>
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -140,26 +29,76 @@
         </div>
         <div class="card-body">
           <!--Form New Entry-->
-          <form action="">
+          <form action="php/entry.php" method="post" enctype="multipart/form-data">
             <!--Page Title-->
             <div class="row">
               <div class="col-sm-6">
-                <div class="form-group"> 
-                  <label for="page_title">Título de la Entrada</label>
-                  <input id="page_title" class="form-control form-control-lg" type="text" name="page_title" maxlength="80" placeholder="Max. 80 caracteres">
+                <div class="form-group">
+                  <label for="title_page">Título de la Entrada</label>
+                  <input id="title_page" class="form-control form-control-lg" type="text" name="title_page" maxlength="80" placeholder="Max. 80 caracteres">
                 </div>
               </div>
             </div>
             <!--Page Description-->
             <div class="row">
               <div class="col-sm-12">
-                <div class="form-group"> 
-                  <label for="page_title">Descripción</label>
-                  <input id="page_title" class="form-control form-control-lg" type="text" name="page_title" maxlength="120" placeholder="Max. 120 caracteres">
+                <div class="form-group">
+                  <label for="desc_page">Descripción</label>
+                  <input id="desc_page" class="form-control form-control-lg" type="text" name="desc_page" maxlength="120" placeholder="Max. 120 caracteres">
                 </div>
               </div>
             </div>
-            <!---->
+            <!--Page Content - Summernote-->
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label for="cont_page">Cuerpo</label>
+                  <textarea id="cont_page" name="cont_page">
+                    Contenido de la página o entrada...
+                  </textarea>
+                  <script>
+                    $(function () {
+                      // Summernote
+                      $('#cont_page').summernote()
+                    })
+                  </script>
+                </div>
+              </div>
+            </div>
+            <!--Page Banner-->
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label for="img_page">Banner</label>
+                  <div class="input-group">
+                      <div class="custom-file">
+                        <input type="file" class="custom-file-input" name="img_page" id="img_page">
+                        <label class="custom-file-label" for="img_page">Subir Imagen 1600x484 pixels</label>
+                      </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+              <script>
+              $(function () {
+                bsCustomFileInput.init();
+              });
+              </script>
+            <!--Page Labels-->
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label for="labels_page">Etiquetas</label>
+                  <input id="labels_page" class="form-control form-control-lg" type="text" name="labels_page" maxlength="120" placeholder="Separar etiquetas con ;">
+                </div>
+              </div>
+            </div>
+            <!-- Submit -->
+            <div class="row">
+              <div class="col-sm-4">
+                <button class="btn btn-lg btn-outline-success" type="submit" name="new_entry"><i class="fa fa-plus"></i> Crear Nueva Entrada</button>
+              </div>
+            </div>
           </form>
         </div>
         <!-- /.card-body -->
@@ -171,40 +110,4 @@
   </div>
   <!-- /.content-wrapper -->
 
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
-
-  <!-- Main Footer -->
-  <footer class="main-footer">
-    <strong>Copyright &copy; 2020-2021 <a href="#">Desarrollo de la compresión lectora de textos multimodales y multimedia en secundaria</a>.</strong>
-    All rights reserved.
-    <div class="float-right d-none d-sm-inline-block">
-      <b>Version</b> 2.0
-    </div>
-  </footer>
-</div>
-<!-- ./wrapper -->
-
-<!-- REQUIRED SCRIPTS -->
-<!-- jQuery -->
-<script src="plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap -->
-<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- overlayScrollbars -->
-<script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-<!-- AdminLTE App -->
-<script src="dist/js/adminlte.js"></script>
-
-<!-- PAGE PLUGINS -->
-<!-- jQuery Mapael -->
-<script src="plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
-<script src="plugins/raphael/raphael.min.js"></script>
-<script src="plugins/jquery-mapael/jquery.mapael.min.js"></script>
-<script src="plugins/jquery-mapael/maps/usa_states.min.js"></script>
-<!-- ChartJS -->
-<script src="plugins/chart.js/Chart.min.js"></script>
-</body>
-</html>
+<?php include 'includes/footer.php'; ?>

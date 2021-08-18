@@ -1,5 +1,18 @@
 <?php include "includes/header.php"; ?>
+<?php
 
+if (isset($_GET['id'])) {
+	//Query page data
+	$id_page = $_GET['id'];
+	include_once 'php/conn.php';
+	$sql = "SELECT * FROM pages LEFT JOIN files ON pages.id_page=files.id_page WHERE pages.id_page = '$id_page'";
+	$result = $db->query($sql);
+	$row = $result->fetch_assoc();
+} else {
+	header('HTTP/1.1 404 Not Found', true, 404);
+	exit();
+}
+ ?>
 			<!-- Main -->
 				<section class="wrapper style1">
 					<div class="container">
@@ -11,71 +24,53 @@
 
 										<article>
 											<header>
-												<h2>Right Sidebar</h2>
-												<p>Sidebar on the right, content on the left.</p>
+												<h2><?php echo $row['title_page']; ?></h2>
+												<p><?php echo $row['desc_page']; ?></p>
 											</header>
-
-											<span class="image featured"><img src="images/banner.jpg" alt="" /></span>
-
-											<p>Phasellus quam turpis, feugiat sit amet ornare in, hendrerit in lectus.
-											Praesent semper mod quis eget mi. Etiam eu ante risus. Aliquam erat volutpat.
-											Aliquam luctus et mattis lectus sit amet pulvinar. Nam turpis nisi
-											consequat etiam lorem ipsum dolor sit amet nullam.</p>
-
-											<h3>And Yet Another Subheading</h3>
-											<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac quam risus, at tempus
-											justo. Sed dictum rutrum massa eu volutpat. Quisque vitae hendrerit sem. Pellentesque lorem felis,
-											ultricies a bibendum id, bibendum sit amet nisl. Mauris et lorem quam. Maecenas rutrum imperdiet
-											vulputate. Nulla quis nibh ipsum, sed egestas justo. Morbi ut ante mattis orci convallis tempor.
-											Etiam a lacus a lacus pharetra porttitor quis accumsan odio. Sed vel euismod nisi. Etiam convallis
-											rhoncus dui quis euismod. Maecenas lorem tellus, congue et condimentum ac, ullamcorper non sapien.
-											Donec sagittis massa et leo semper a scelerisque metus faucibus. Morbi congue mattis mi.
-											Phasellus sed nisl vitae risus tristique volutpat. Cras rutrum commodo luctus.</p>
-
-											<p>Phasellus odio risus, faucibus et viverra vitae, eleifend ac purus. Praesent mattis, enim
-											quis hendrerit porttitor, sapien tortor viverra magna, sit amet rhoncus nisl lacus nec arcu.
-											Suspendisse laoreet metus ut metus imperdiet interdum aliquam justo tincidunt. Mauris dolor urna,
-											fringilla vel malesuada ac, dignissim eu mi. Praesent mollis massa ac nulla pretium pretium.
-											Maecenas tortor mauris, consectetur pellentesque dapibus eget, tincidunt vitae arcu.
-											Vestibulum purus augue, tincidunt sit amet iaculis id, porta eu purus.</p>
+											<?php if ($row['img_page']==='NULL'): //Nothing?>
+												<?php else: ?>
+												<span class="image featured"><img src="images/<?php echo $row['img_page']; ?>" alt="Banner" /></span>
+											<?php endif; ?>
+											<?php echo html_entity_decode($row['cont_page']); ?>
 										</article>
 
 								</div>
 							</div>
 							<div class="col-4 col-12-narrower">
+								<?php
+								$sql = "SELECT title_page, desc_page, id_page FROM pages ORDER BY RAND() LIMIT 6;";
+								if ($db->query($sql)):
+								$result = $db->query($sql);
+								$row = $result->fetch_assoc();
+								 ?>
 								<div id="sidebar">
-
 									<!-- Sidebar -->
 
 										<section>
-											<h3>Just a Subheading</h3>
-											<p>Phasellus quam turpis, feugiat sit amet ornare in, hendrerit in lectus.
-											Praesent semper mod quis eget mi. Etiam eu ante risus. Aliquam erat volutpat.
-											Aliquam luctus et mattis lectus sit amet pulvinar. Nam turpis et nisi etiam.</p>
+											<h2><?php echo $row['title_page']; ?></h2>
+											<p><?php echo $row['desc_page']; ?></p>
 											<footer>
-												<a href="#" class="button">Continue Reading</a>
+												<a href="posts.php?id=<?php echo $row['id_page']; ?>" class="button">Leer Más</a>
 											</footer>
 										</section>
 
 										<section>
-											<h3>Another Subheading</h3>
+											<h3>Más información</h3>
 											<ul class="links">
-												<li><a href="#">Amet turpis, feugiat et sit amet</a></li>
-												<li><a href="#">Ornare in hendrerit in lectus</a></li>
-												<li><a href="#">Semper mod quis eget mi dolore</a></li>
-												<li><a href="#">Consequat etiam lorem phasellus</a></li>
-												<li><a href="#">Amet turpis, feugiat et sit amet</a></li>
-												<li><a href="#">Semper mod quisturpis nisi</a></li>
+												<?php while ($row = $result->fetch_assoc()): ?>
+												<li><a href="posts.php?id=<?php echo $row['id_page']; ?>"><?php echo $row['title_page']; ?></a></li>
+											<?php endwhile; ?>
 											</ul>
-											<footer>
-												<a href="#" class="button">More Random Links</a>
-											</footer>
 										</section>
 
 								</div>
+								<?php endif; ?>
 							</div>
 						</div>
 					</div>
 				</section>
 
-<?php include "includes/footer.php"; ?>
+<?php include "includes/footer.php";
+//Close the connection
+$db->close();
+?>
