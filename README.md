@@ -13,7 +13,7 @@ Created by @lsolanoa in collaboration with the [University of Costa Rica](https:
 1.0
 
 **Code Version**
-1.0
+1.2
 
 ## Index
 
