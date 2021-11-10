@@ -50,6 +50,9 @@ date_default_timezone_set('America/Costa_Rica');
 									//Query Entries
 									$sql = "SELECT pages.id_page, title_page, struc_nav FROM nav JOIN pages ON nav.id_page=pages.id_page WHERE struc_nav='NULL';";
 									$result = $db->query($sql);
+									if($result == FALSE):
+										else :
+
 									while ($row = $result->fetch_assoc()):
 								 ?>
 								 <li <?php if ($url==="pages.php") {echo "class='current'";} ?> ><a href="pages.php?id=<?php echo $row['id_page']; ?>"><?php echo $row['title_page']; ?></a>
@@ -70,6 +73,7 @@ date_default_timezone_set('America/Costa_Rica');
 									<?php endif; ?>
 								 </li>
 							 <?php endwhile;?>
+							 <?php endif; ?>
 							</ul>
 						</nav>
 

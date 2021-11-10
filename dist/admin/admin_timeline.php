@@ -51,6 +51,8 @@
                   //Query Entries
                   $sql = "SELECT * FROM timeline JOIN pages ON timeline.id_page=pages.id_page ORDER BY pages.id_page";
                   $result = $db->query($sql);
+                  if($result == FALSE):
+                    else:
                   while ($row = $result->fetch_assoc()):
                  ?>
                   <tr>
@@ -81,6 +83,7 @@
                       </td>
                   </tr>
                 <?php endwhile; ?>
+                <?php endif; ?>
                 <tr>
                   <form action="php/timeline.php" method="post">
                       <td></td>

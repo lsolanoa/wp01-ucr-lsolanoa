@@ -8,10 +8,13 @@
             <?php 
              			$sql = "SELECT pages.id_page, title_page FROM nav JOIN pages ON nav.id_page=pages.id_page ORDER BY pos_nav ASC";
                    $result = $db->query($sql);
+                   if($result == FALSE):
+                   else:
                    while ($row = $result->fetch_assoc()): 
             ?>
             <li><a href="pages.php?id=<?php echo $row['id_page']; ?>"><?php echo $row['title_page']; ?></a></li>
             <?php endwhile; ?>
+            <?php endif; ?>
           </ul>
         </section>
         <section class="col-3 col-6-narrower col-12-mobilep">
@@ -26,9 +29,9 @@
             <?php endwhile; ?>
           </ul>
         </section>
-        <section class="col-6 col-12-narrower">
+        <section class="col-6 col-12-narrower" id="cont_section">
           <h3>Contactanos:</h3>
-          <form class>
+          <form action="php/cont.php" method="post" id="cont_form">
             <div class="row gtr-50">
               <div class="col-6 col-12-mobilep">
                 <input style="color:black;" type="text" name="name_cont" id="name_cont" placeholder="Nombre" require/>
@@ -47,6 +50,25 @@
             </div>
           </form>
         </section>
+        <script>
+        $(document).ready(function(){
+            $("#cont_form").submit(function(e){
+                e.preventDefault(); //Prevent form form submmiting
+                name_cont = $("#name_cont").val();
+                email_cont = $("#email").val();
+                desc_cont = $("#desc_cont").val();
+                $.post("php/cont.php",//URL 
+                {
+                name_cont: name_cont,
+                email_cont: email_cont,
+                desc_cont: desc_cont
+                },//post
+                function(data,status){//Callback status
+                $("#cont_section").html(data);
+                });
+             });
+        });
+    </script>
       </div>
     </div>
 

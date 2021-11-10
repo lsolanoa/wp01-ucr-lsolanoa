@@ -51,6 +51,8 @@
                   //Query Entries
                   $sql = "SELECT * FROM nav LEFT JOIN pages ON nav.id_page=pages.id_page ORDER BY pos_nav";
                   $result = $db->query($sql);
+                  if($result == FALSE):
+                  else:
                   while ($row = $result->fetch_assoc()):
                  ?>
                   <tr>
@@ -96,6 +98,7 @@
                       </td>
                   </tr>
                 <?php endwhile; ?>
+                <?php endif; ?>
                 <tr>
                   <form action="php/nav.php" method="post">
                       <td> <input type="number" class="form-control" name="pos_nav" value="0"> </td>
@@ -123,10 +126,13 @@
                                 //Query Entries
                                 $sql = "SELECT pages.id_page, title_page FROM pages JOIN nav ON pages.id_page=nav.id_page";
                                 $result = $db->query($sql);
+                                if($result == FALSE):
+                                else:
                                 while ($row = $result->fetch_assoc()):
                                ?>
                                <option value="<?php echo $row['id_page']; ?>">Subpágina de: <?php echo $row['title_page']; ?></option>
                              <?php endwhile; ?>
+                             <?php endif; ?>
                             </select>
                           </div>
                          </td>
